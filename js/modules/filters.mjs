@@ -1,9 +1,10 @@
 import throwDomEl from '../utils/dom-emitter.mjs'
 
 export default class Filters {
-  constructor(changeDateFrom) {
+  constructor(changeDateFrom, changeDateTo) {
     this.blockId = 'filters';
     this.changeDateFrom = changeDateFrom
+    this.changeDateTo = changeDateTo
   }
   get template() {
     return `
@@ -33,8 +34,10 @@ export default class Filters {
 
   _bind() {
     document.querySelector('#date-from').addEventListener('change', (evt) => {
-      console.log('date from change', this.changeDateFrom)
       this.changeDateFrom(evt.target.value)
+    })
+    document.querySelector('#date-to').addEventListener('change', (evt) => {
+      this.changeDateTo(evt.target.value)
     })
   }
 }

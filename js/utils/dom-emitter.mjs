@@ -3,7 +3,6 @@ const throwDomEl = (blockId, domString, isNeedClear = false) => {
   const mainBlock = document.querySelector(`#${blockId}`);
   template.innerHTML = domString;
 
-  console.log('isNeedClear', isNeedClear);
 
   if (isNeedClear) {
     mainBlock.innerHTML = ``;

@@ -12,12 +12,17 @@ export default class View {
   }
 
   init(isRerender) {
-    const FilterView = new Filters(this.state.changeDateFrom)
-    const ChartView = new Chart()
-    const TableView = new Table(this.state.data, this.state.tableFields, this.state.dateFrom)
-
-    FilterView.init(isRerender)
-    ChartView.init(isRerender)
-    TableView.init(isRerender)
+    if (isRerender) {
+      const TableView = new Table(this.state.filteredData, this.state.tableFields, this.state.dateFrom)
+      TableView.init(isRerender)
+    } else {
+      const FilterView = new Filters(this.state.changeDateFrom, this.state.changeDateTo)
+      const ChartView = new Chart()
+      const TableView = new Table(this.state.filteredData, this.state.tableFields, this.state.dateFrom)
+  
+      FilterView.init()
+      ChartView.init()
+      TableView.init(isRerender)
+    }
   }
 }

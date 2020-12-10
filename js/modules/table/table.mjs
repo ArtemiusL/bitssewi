@@ -50,7 +50,6 @@ export default class Table {
   }
 
   get template() {
-    console.log('this.data', this.data);
     const items = this.data.slice(0, 7).map(item => new TableItem(item, this.tableFields).template).join('')
     const tableHead = new TableHead(this.tableFields).template;
 

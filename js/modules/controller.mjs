@@ -1,27 +1,24 @@
 export default class Controller {
-  constructor(state, view) {
+  constructor(model, view) {
     this._tableFields = ['day', 'clicks', 'impressions', 'leads', 'revenue'];
     this._dateFrom = 'initial'
     this._dateTo = ''
-    this.state = state
+    this.model = model
     this.view = view
     this.viewClass = ''
     this.update = this.update.bind(this)
   }
 
   init() {
-    this.stateReal = new this.state(this.update)
-    this.stateReal.init()
+    this.state = new this.model(this.update)
+    this.state.init()
     const View = this.view
-    console.log('this.view', this.view);
-    this.viewClass = new View(this.stateReal).init()
+    this.viewClass = new View(this.state).init()
   }
 
   update() {
-    console.log('update', this);
     const View = this.view
-    console.log('update view', View);
-    this.viewClass = new View(this.stateReal).init(true)
+    this.viewClass = new View(this.state).init(true)
   }
   
   updateData() {

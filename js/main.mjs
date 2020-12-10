@@ -18,5 +18,3 @@ Controller.init()
 //       ChartView.init()
 //       TableView.init()
 //     })
-
-// console.log('welcome', welcome)

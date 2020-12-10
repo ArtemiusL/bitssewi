@@ -1,11 +1,14 @@
 export default class State {
   constructor(handleUpdate) {
     this._tableFields = ['day', 'clicks', 'impressions', 'leads', 'revenue'];
-    this._dateFrom = 'initial'
-    this._dateTo = ''
+    this._dateFrom = new Date(0)
+    this._dateTo = new Date()
     this.data = []
+    this.filteredData = []
     this.handleUpdate = handleUpdate
     this.changeDateFrom = this.changeDateFrom.bind(this)
+    this.changeDateTo = this.changeDateTo.bind(this)
+
   }
 
   get tableFields() {
@@ -14,7 +17,17 @@ export default class State {
 
   changeDateFrom(value) {
     this._dateFrom = value
-    console.log('changeDateFrom',this._dateFrom );
+    console.log('this._dateFrom', this._dateFrom);
+    this.filteredData = this.data.filter(item => new Date(item.day) >= new Date(this._dateFrom) && new Date(item.day) <= new Date(this._dateTo))
+    console.log('this.filteredData', this.filteredData);
+    this.handleUpdate()
+  }
+
+  changeDateTo(value) {
+    this._dateTo = value
+    console.log('this._dateFrom', this._dateTo);
+    this.filteredData = this.data.filter(item => new Date(item.day) >= new Date(this._dateFrom) && new Date(item.day) <= new Date(this._dateTo))
+    console.log('this.filteredData', this.filteredData);
     this.handleUpdate()
   }
 
@@ -27,6 +40,7 @@ export default class State {
       .then(curData => curData.json())
       .then(nextData => {
         this.data = nextData
+        this.filteredData = nextData
         this.handleUpdate()
       })
   }
