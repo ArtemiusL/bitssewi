@@ -1,21 +1,15 @@
 import throwDomEl from '../../utils/dom-emitter.mjs'
 
 class TableItem {
-  constructor(props) {
-    this.props = props
-    this.propsForView = {
-      day: props.day,
-      clicks: props.clicks,
-      impressions: props.impressions
-    }
+  constructor(props, tableFields) {
+    this.columns = tableFields
+    this.data = props
   }
   
   get template() {
-    console.log('this.amount', this.amount);
-    const columns = Object.keys(this.propsForView)
-    const content = columns.map(item => `
+    const content = this.columns.map(item => `
       <div class="table-column">
-        ${this.propsForView[item]}
+        ${this.data[item]}
       </div>
     `).join('')
 
@@ -27,9 +21,10 @@ class TableItem {
 }
 
 class TableHead {
-  constructor() {
-    this.columns = ['day', 'clicks', 'impressions']
+  constructor(tableFields) {
+    this.columns = tableFields
   }
+
   get template() {
     const columns = this.columns.map(item => `
       <div class="tableHead__column">
@@ -47,14 +42,16 @@ class TableHead {
 }
 
 export default class Table {
-  constructor(data) {
+  constructor(data, tableFields) {
     this.blockId = 'table';
     this.data = data
+    this.tableFields = tableFields
   }
+
   get template() {
     console.log('this.data', this.data);
-    const items = this.data.slice(0, 7).map(item => new TableItem(item).template).join('')
-    const tableHead = new TableHead().template;
+    const items = this.data.slice(0, 7).map(item => new TableItem(item, this.tableFields).template).join('')
+    const tableHead = new TableHead(this.tableFields).template;
 
     return `
     <section class="table-wrap">

@@ -1,23 +1,31 @@
 .table {
-  border: 1px solid lightgray;
+  border: 1px solid gray;
   list-style: none;
 }
 
 .table-item {
-  border: 1px solid lightgray;
+  border-bottom: 1px solid gray;
   display: flex;
 }
 
+.table-item:last-child {
+  border: 0;
+}
+
 .table-column {
-  border-right: 1px solid lightgray;
+  border-right: 1px solid gray;
   width: 100%;
+  padding: 5px;
 }
 
 .table-head {
   display: flex;
+  border-bottom: 1px solid gray;
 }
 
 .tableHead__column {
-  border-right: 1px solid lightgray;
+  border-right: 1px solid gray;
   width: 100%;
+  padding: 5px;
+  background-color: lightgray;
 }
