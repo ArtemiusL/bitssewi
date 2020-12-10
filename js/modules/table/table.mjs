@@ -42,10 +42,11 @@ class TableHead {
 }
 
 export default class Table {
-  constructor(data, tableFields) {
+  constructor(data, tableFields, dateFrom) {
     this.blockId = 'table';
     this.data = data
     this.tableFields = tableFields
+    this.dateFrom = dateFrom
   }
 
   get template() {
@@ -60,14 +61,17 @@ export default class Table {
         ${tableHead}
         ${items}
       </ul>
+      <h3>
+        DateFrom: ${this.dateFrom}
+      </h3>
     </section>`;
   }
 
-  init() {
-    this._render()
+  init(isNeedClear) {
+    this._render(isNeedClear)
   }
 
-  _render() {
-    return throwDomEl(this.blockId, this.template);
+  _render(isNeedClear) {
+    return throwDomEl(this.blockId, this.template, isNeedClear);
   }
 }

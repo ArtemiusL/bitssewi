@@ -11,11 +11,11 @@ export default class Chart {
     </section>`;
   }
 
-  init() {
-    this._render()
+  init(isNeedClear) {
+    this._render(isNeedClear)
   }
 
-  _render() {
-    return throwDomEl(this.blockId, this.template);
+  _render(isNeedClear) {
+    return throwDomEl(this.blockId, this.template, isNeedClear);
   }
 }
