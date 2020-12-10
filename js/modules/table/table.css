@@ -1,0 +1,23 @@
+.table {
+  border: 1px solid lightgray;
+  list-style: none;
+}
+
+.table-item {
+  border: 1px solid lightgray;
+  display: flex;
+}
+
+.table-column {
+  border-right: 1px solid lightgray;
+  width: 100%;
+}
+
+.table-head {
+  display: flex;
+}
+
+.tableHead__column {
+  border-right: 1px solid lightgray;
+  width: 100%;
+}
