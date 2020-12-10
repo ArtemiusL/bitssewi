@@ -16,7 +16,7 @@ export default class View {
       const TableView = new Table(this.state.filteredData, this.state.tableFields, this.state.dateFrom)
       TableView.init(isRerender)
     } else {
-      const FilterView = new Filters(this.state.changeDateFrom, this.state.changeDateTo)
+      const FilterView = new Filters(this.state.changeDateFrom, this.state.changeDateTo, this.state.dateFrom, this.state.dateTo)
       const ChartView = new Chart()
       const TableView = new Table(this.state.filteredData, this.state.tableFields, this.state.dateFrom)
   

@@ -1,8 +1,5 @@
 export default class Controller {
   constructor(model, view) {
-    this._tableFields = ['day', 'clicks', 'impressions', 'leads', 'revenue'];
-    this._dateFrom = 'initial'
-    this._dateTo = ''
     this.model = model
     this.view = view
     this.viewClass = ''

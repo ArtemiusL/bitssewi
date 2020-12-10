@@ -17,22 +17,25 @@ export default class State {
 
   changeDateFrom(value) {
     this._dateFrom = value
-    console.log('this._dateFrom', this._dateFrom);
-    this.filteredData = this.data.filter(item => new Date(item.day) >= new Date(this._dateFrom) && new Date(item.day) <= new Date(this._dateTo))
-    console.log('this.filteredData', this.filteredData);
-    this.handleUpdate()
+    this._updateFilteredData()
   }
 
   changeDateTo(value) {
     this._dateTo = value
-    console.log('this._dateFrom', this._dateTo);
+    this._updateFilteredData()
+  }
+
+  _updateFilteredData() {
     this.filteredData = this.data.filter(item => new Date(item.day) >= new Date(this._dateFrom) && new Date(item.day) <= new Date(this._dateTo))
-    console.log('this.filteredData', this.filteredData);
     this.handleUpdate()
   }
 
   get dateFrom() {
     return this._dateFrom;
+  }
+
+  get dateTo() {
+    return this._dateTo;
   }
 
   init() {

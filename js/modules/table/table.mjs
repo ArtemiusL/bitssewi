@@ -1,45 +1,6 @@
 import throwDomEl from '../../utils/dom-emitter.mjs'
-
-class TableItem {
-  constructor(props, tableFields) {
-    this.columns = tableFields
-    this.data = props
-  }
-  
-  get template() {
-    const content = this.columns.map(item => `
-      <div class="table-column">
-        ${this.data[item]}
-      </div>
-    `).join('')
-
-    return `
-    <li class="table-item">
-      ${content}
-    </li>`
-  }
-}
-
-class TableHead {
-  constructor(tableFields) {
-    this.columns = tableFields
-  }
-
-  get template() {
-    const columns = this.columns.map(item => `
-      <div class="tableHead__column">
-        ${item}
-      </div>
-    `).join('')
- 
-    
-    return `
-      <section class="table-head">
-        ${columns}
-      </section>
-    `
-  }
-}
+import TableItem from './tableItem.mjs'
+import TableHead from './tableHead.mjs'
 
 export default class Table {
   constructor(data, tableFields, dateFrom) {
@@ -60,9 +21,6 @@ export default class Table {
         ${tableHead}
         ${items}
       </ul>
-      <h3>
-        DateFrom: ${this.dateFrom}
-      </h3>
     </section>`;
   }
 
