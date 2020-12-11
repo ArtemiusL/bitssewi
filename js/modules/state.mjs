@@ -8,11 +8,32 @@ export default class State {
     this.handleUpdate = handleUpdate
     this.changeDateFrom = this.changeDateFrom.bind(this)
     this.changeDateTo = this.changeDateTo.bind(this)
-
+    this.changeSortField = this.changeSortField.bind(this)
+    this.changeIsDesc = this.changeIsDesc.bind(this)
+    this._sortField = null
+    this._isDesc = false
   }
 
   get tableFields() {
     return this._tableFields;
+  }
+
+  get sortField() {
+    return this._sortField;
+  }
+
+  get isDesc() {
+    return this._isDesc;
+  }
+
+  changeIsDesc() {
+    this._isDesc = !this._isDesc
+    this.handleUpdate()
+  }
+
+  changeSortField(value) {
+    this._sortField = value
+    this.handleUpdate()
   }
 
   changeDateFrom(value) {

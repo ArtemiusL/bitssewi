@@ -28,4 +28,9 @@
   width: 100%;
   padding: 5px;
   background-color: lightgray;
+  cursor: pointer;
+}
+
+.tableHead__column.isActive {
+  background-color: lightpink;
 }
