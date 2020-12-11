@@ -4,11 +4,22 @@
   background-color: lightblue;
   border-bottom: 3px solid gray;
   border-left: 3px solid gray;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding-top: 3px;
+}
+
+.chartMetrik__title {
+  margin-top: 30px;
 }
 
 .chartMarking {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
   height: 100%;
-  position: relative;
 }
 
 .markingVertical {
@@ -42,7 +53,7 @@
   display: flex;
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -18px;
 }
 
 .markingHorizontal__line {
@@ -50,6 +61,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  font-size: 12px;
 }
 
 .markingHorizontal__line::before {
@@ -57,8 +69,16 @@
   width: 3px;
   height: 7px;
   position: absolute;
-  left: 50%;
+  right: 2px;
   content: '';
-  bottom: -9px;
-  transform: translate3d(-50%, 0, 0);
+  bottom: 18px;
+}
+
+.chartContent__column {
+  width: 6%;
+  margin-right: 2%;
+  margin-left: 2%;
+  background: lightpink;
+  border: 1px solid red;
+  border-bottom: none;
 }

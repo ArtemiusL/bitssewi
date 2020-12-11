@@ -5,10 +5,10 @@ import TableHead from './tableHead.mjs'
 export default class Table {
   constructor(props) {
     const sortField = props.sortField
-    const sortedData = props.data.sort((itemA, itemB) => props.isDesc ? itemA[sortField] - itemB[sortField] : itemB[sortField] - itemA[sortField])
+    const sortedData = props.filteredData.sort((itemA, itemB) => props.isDesc ? itemA[sortField] - itemB[sortField] : itemB[sortField] - itemA[sortField])
 
     this.blockId = 'table';
-    this.data = props.sortField ? sortedData : props.data
+    this.data = props.sortField ? sortedData : props.filteredData
     this.tableFields = props.tableFields
     this.dateFrom = props.dateFrom
     this.sortField = props.sortField

@@ -14,10 +14,12 @@ export default class View {
   init(isRerender) {
     if (isRerender) {
       const TableView = new Table(this.state)
+      const ChartView = new Chart(this.state)
+      ChartView.init(isRerender)
       TableView.init(isRerender)
     } else {
       const FilterView = new Filters(this.state.changeDateFrom, this.state.changeDateTo, this.state.dateFrom, this.state.dateTo)
-      const ChartView = new Chart()
+      const ChartView = new Chart(this.state)
       const TableView = new Table(this.state)
   
       FilterView.init()
