@@ -22,3 +22,8 @@ export default class Controller {
     // обновить model 
   }
 }
+
+
+//Observable
+// event emitter 
+// mvvm

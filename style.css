@@ -1,4 +1,5 @@
 @import './js/modules/table/table.css';
+@import './js/modules/chart/chart.css';
 
 * {
   padding: 0;
@@ -7,5 +8,5 @@
 
 .wrapper {
   margin: 0 auto;
-  padding: 0 10vw;
+  padding: 20vh 10vw;
 }

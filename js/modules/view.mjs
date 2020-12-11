@@ -1,5 +1,5 @@
 import Filters from './filters.mjs'
-import Chart from './chart.mjs'
+import Chart from './chart/chart.mjs'
 import Table from './table/table.mjs'
 
 export default class View {
