@@ -10,20 +10,15 @@ export default class Controller {
     this.state = new this.model(this.update)
     this.state.init()
     const View = this.view
-    this.viewClass = new View(this.state).init()
+    this.viewClass = new View(this.state)
+    this.viewClass.init()
+    console.log('this.viewClass init', this.viewClass);
   }
 
   update() {
     const View = this.view
-    this.viewClass = new View(this.state).init(true)
-  }
-  
-  updateData() {
-    // обновить model 
+    this.viewClass.unmount()
+    this.viewClass = new View(this.state)
+    this.viewClass.init(true)
   }
 }
-
-
-//Observable
-// event emitter 
-// mvvm

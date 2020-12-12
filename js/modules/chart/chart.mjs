@@ -1,21 +1,5 @@
 import throwDomEl from '../../utils/dom-emitter.mjs'
-
-const getForChart = (data, activeChart) => {
-  const maxValue = data.reduce((prev, cur) => {
-    return prev > cur[activeChart] ? prev : cur[activeChart]
-  }, 0)
-  const minValue = maxValue / 10
-  const filler = new Array(10).fill('')
-  const streaks = filler.map((item, indx) => Math.round(minValue * (indx + 1)))
-  const chartColumnsValues = data.map(item => item[activeChart] * 100 / maxValue)
-
-  return {
-    minValue,
-    maxValue,
-    streaks,
-    chartColumnsValues
-  }
-}
+import getInfoForChart from './utils/getInfoForChart.mjs'
 
 export default class Chart {
   constructor(props) {
@@ -26,8 +10,7 @@ export default class Chart {
     this.changeActiveChart = props.changeActiveChart
   }
   get template() {
-    const chartData = getForChart(this.data, this.activeChart)
-    const count = new Array(10).fill('')
+    const chartData = getInfoForChart(this.data, this.activeChart)
     const verticals = chartData.streaks.map((item) =>  `<li class="markingVertical__line">${item}</li>`).join('')
     const horizontals = this.data.map((item, index) =>  `<li class="markingHorizontal__line">${item.day}</li>`).join('')
 
@@ -74,13 +57,20 @@ export default class Chart {
     this._bind()
   }
 
+  unmount() {
+    this.chartMetrikSelect.removeEventListener('change', this.handleChartMetrikChange)
+  }
+
   _render(isNeedClear) {
     return throwDomEl(this.blockId, this.template, isNeedClear);
   }
 
+  handleChartMetrikChange = (evt) => {
+    this.changeActiveChart(evt.target.value)
+  }
+
   _bind() {
-    document.querySelector('#chartMetrik__select').addEventListener('change', (evt) => {
-      this.changeActiveChart(evt.target.value)
-    })
+    this.chartMetrikSelect = document.querySelector('#chartMetrik__select')
+    this.chartMetrikSelect.addEventListener('change', this.handleChartMetrikChange)
   }
 }
