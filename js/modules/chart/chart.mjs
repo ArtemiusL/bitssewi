@@ -14,7 +14,7 @@ export default class Chart {
     const verticals = chartData.streaks.map((item) =>  `<li class="markingVertical__line">${item}</li>`).join('')
     const horizontals = this.data.map((item, index) =>  `<li class="markingHorizontal__line">${item.day}</li>`).join('')
 
-    const chartColumns = chartData.chartColumnsValues.map((item,indx, arr) => {
+    const chartColumns = chartData.chartColumnsValues.map((item, indx, arr) => {
       const unit = 100 / arr.length;
       const width = unit * 0.6
       const margin = unit * 0.2
