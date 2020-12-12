@@ -10,8 +10,14 @@ export default class State {
     this.changeDateTo = this.changeDateTo.bind(this)
     this.changeSortField = this.changeSortField.bind(this)
     this.changeIsDesc = this.changeIsDesc.bind(this)
+    this.changeActiveChart = this.changeActiveChart.bind(this)
     this._sortField = null
     this._isDesc = false
+    this._activeChart = ''
+  }
+
+  get activeChart() {
+    return this._activeChart;
   }
 
   get tableFields() {
@@ -24,6 +30,11 @@ export default class State {
 
   get isDesc() {
     return this._isDesc;
+  }
+
+  changeActiveChart(value) {
+    this._activeChart = value
+    this.handleUpdate()
   }
 
   changeIsDesc() {

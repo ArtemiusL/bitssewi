@@ -6,10 +6,11 @@ const getForChart = (data, activeChart) => {
   }, 0)
   const minValue = maxValue / 10
   const filler = new Array(10).fill('')
-  const streaks = filler.map((item, indx) => Math.round(minValue * indx + 1))
+  const streaks = filler.map((item, indx) => Math.round(minValue * (indx + 1)))
   const chartColumnsValues = data.map(item => item[activeChart] * 100 / maxValue)
 
   return {
+    minValue,
     maxValue,
     streaks,
     chartColumnsValues
@@ -21,7 +22,8 @@ export default class Chart {
     this.blockId = 'chart';
     this.tableFields = props.tableFields.filter(item => item !== 'day')
     this.data = props.filteredData.slice(0, 10)
-    this.activeChart = 'leads'
+    this.activeChart = props.activeChart || this.tableFields[0]
+    this.changeActiveChart = props.changeActiveChart
   }
   get template() {
     const chartData = getForChart(this.data, this.activeChart)
@@ -58,8 +60,8 @@ export default class Chart {
       </div>
       <h2 class="chartMetrik__title">Chart metric</h2>
       <form>
-        <select>
-        ${this.tableFields.map(item => `<option>
+        <select id="chartMetrik__select" name="chartMetrik">
+        ${this.tableFields.map(item => `<option value="${item}" ${this.activeChart === item ? 'selected' : ''}>
           ${item}
         </option>`)}
         </select>
@@ -69,9 +71,16 @@ export default class Chart {
 
   init(isNeedClear) {
     this._render(isNeedClear)
+    this._bind()
   }
 
   _render(isNeedClear) {
     return throwDomEl(this.blockId, this.template, isNeedClear);
+  }
+
+  _bind() {
+    document.querySelector('#chartMetrik__select').addEventListener('change', (evt) => {
+      this.changeActiveChart(evt.target.value)
+    })
   }
 }
