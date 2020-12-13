@@ -4,6 +4,10 @@
   margin-bottom: 15px;
 }
 
+.table__title {
+  margin-bottom: 8px;
+}
+
 .table-item {
   border-bottom: 1px solid gray;
   display: flex;
@@ -30,8 +34,24 @@
   padding: 5px;
   background-color: lightgray;
   cursor: pointer;
+  position: relative;
 }
 
 .tableHead__column.isActive {
   background-color: lightpink;
+}
+
+.tableHead__column.isActive::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate3d(0, -50%, 0);
+  border: 4px solid transparent;
+  border-bottom: 4px solid black;
+}
+
+.tableHead__column.isDesc.isActive::after {
+  border-bottom: none;
+  border-top: 4px solid black;
 }

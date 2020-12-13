@@ -29,7 +29,7 @@ export default class Chart {
 
     return `
     <section class="chart">
-      <h2 class="chart__title">График</h2>
+      <h2 class="chart__title">Chart</h2>
       <div class="chartContent">
         ${chartColumns}
         <div class="chartMarking">
@@ -58,19 +58,19 @@ export default class Chart {
   }
 
   unmount() {
-    this.chartMetrikSelect.removeEventListener('change', this.handleChartMetrikChange)
+    this.chartMetrikSelect.removeEventListener('change', this._handleChartMetrikChange)
   }
 
   _render(isNeedClear) {
     return throwDomEl(this.blockId, this.template, isNeedClear);
   }
 
-  handleChartMetrikChange = (evt) => {
+  _handleChartMetrikChange = (evt) => {
     this.changeActiveChart(evt.target.value)
   }
 
   _bind() {
     this.chartMetrikSelect = document.querySelector('#chartMetrik__select')
-    this.chartMetrikSelect.addEventListener('change', this.handleChartMetrikChange)
+    this.chartMetrikSelect.addEventListener('change', this._handleChartMetrikChange)
   }
 }

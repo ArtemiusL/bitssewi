@@ -7,7 +7,7 @@ export default class Table {
   constructor(props) {
     const sortField = props.sortField
     const filteredData = props.filteredData.slice()
-    const sortedData = filteredData.sort((itemA, itemB) => props.isDesc ? itemA[sortField] - itemB[sortField] : itemB[sortField] - itemA[sortField])
+    const sortedData = filteredData.sort((itemA, itemB) => props.isDesc ? itemB[sortField] - itemA[sortField] : itemA[sortField] - itemB[sortField])
 
     this.blockId = 'table';
     this.data = props.sortField ? sortedData : props.filteredData
@@ -21,11 +21,11 @@ export default class Table {
 
   get template() {
     const items = this.data.slice(0, DEFAULT_POST_AMOUNT).map(item => new TableItem(item, this.tableFields).template).join('')
-    const tableHead = new TableHead(this.tableFields, this.sortField).template;
+    const tableHead = new TableHead(this.tableFields, this.sortField, this.isDesc).template;
 
     return `
       <section class="table-wrap">
-        <h2 class="game__title">Таблица</h2>
+        <h2 class="table__title">Table</h2>
         <ul class="table">
           ${tableHead}
           ${items}
@@ -40,23 +40,24 @@ export default class Table {
   }
 
   unmount() {
-    this.tableColumnsRef.forEach(item => item.removeEventListener('click', this.handleTableColumnClick))
+    this.tableColumnsRef.forEach(item => item.removeEventListener('click', this._handleTableColumnClick))
   }
 
   _render(isNeedClear) {
     return throwDomEl(this.blockId, this.template, isNeedClear);
   }
 
-  handleTableColumnClick = (evt) => {
+  _handleTableColumnClick = (evt) => {
     if (evt.target.dataset.name === this.sortField) {
       this.changeIsDesc()
     } else {
       this.changeSortField(evt.target.dataset.name)
+      this.changeIsDesc(true)
     }
   }
 
   _bind() {   
     this.tableColumnsRef = document.querySelectorAll('.tableHead__column')
-    this.tableColumnsRef.forEach(item => item.addEventListener('click', this.handleTableColumnClick))
+    this.tableColumnsRef.forEach(item => item.addEventListener('click', this._handleTableColumnClick))
   }
 }

@@ -12,7 +12,7 @@ export default class State {
     this.changeIsDesc = this.changeIsDesc.bind(this)
     this.changeActiveChart = this.changeActiveChart.bind(this)
     this._sortField = null
-    this._isDesc = false
+    this._isDesc = true
     this._activeChart = ''
   }
 
@@ -37,8 +37,13 @@ export default class State {
     this.handleUpdate()
   }
 
-  changeIsDesc() {
-    this._isDesc = !this._isDesc
+  changeIsDesc(value) {
+    if (value) {
+      this._isDesc = true
+    } else {
+      this._isDesc = !this._isDesc
+    }
+
     this.handleUpdate()
   }
 

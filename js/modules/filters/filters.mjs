@@ -1,5 +1,5 @@
-import throwDomEl from '../utils/dom-emitter.mjs'
-import formatDate from '../utils/formatDate.mjs'
+import throwDomEl from '../../utils/dom-emitter.mjs'
+import formatDate from '../../utils/formatDate.mjs'
 
 export default class Filters {
   constructor(changeDateFrom, changeDateTo, dateFrom, dateTo) {
@@ -12,7 +12,7 @@ export default class Filters {
   get template() {
     return `
     <section class="filters">
-      <h2 class="game__title">Фильтры</h2>
+      <h2 class="filters__title">Filters</h2>
       <form class="filtersForm">
         <label for="date-from">
           Date from

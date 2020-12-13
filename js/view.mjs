@@ -1,4 +1,4 @@
-import Filters from './modules/filters.mjs'
+import Filters from './modules/filters/filters.mjs'
 import Chart from './modules/chart/chart.mjs'
 import Table from './modules/table/table.mjs'
 
@@ -25,7 +25,7 @@ export default class View {
   
       this.filterView.init()
       this.chartView.init()
-      this.tableView.init(isRerender)
+      this.tableView.init()
     }
   }
 }

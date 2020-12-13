@@ -12,12 +12,11 @@ export default class Controller {
     const View = this.view
     this.viewClass = new View(this.state)
     this.viewClass.init()
-    console.log('this.viewClass init', this.viewClass);
   }
 
   update() {
-    const View = this.view
     this.viewClass.unmount()
+    const View = this.view
     this.viewClass = new View(this.state)
     this.viewClass.init(true)
   }

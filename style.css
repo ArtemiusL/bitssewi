@@ -1,5 +1,6 @@
 @import './js/modules/table/table.css';
 @import './js/modules/chart/chart.css';
+@import './js/modules/filters/filters.css';
 
 * {
   padding: 0;
