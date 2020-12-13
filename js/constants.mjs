@@ -1,1 +1,2 @@
 export const DEFAULT_POST_AMOUNT = 7;
+export const DEFAULT_CHART_POST_AMOUNT = 10;

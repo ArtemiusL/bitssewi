@@ -1,11 +1,13 @@
 import throwDomEl from '../../utils/dom-emitter.mjs'
 import getInfoForChart from './utils/getInfoForChart.mjs'
+import ChartColumn from './chartColumn.mjs'
+import { DEFAULT_CHART_POST_AMOUNT } from '../../constants.mjs'
 
 export default class Chart {
   constructor(props) {
     this.blockId = 'chart';
     this.tableFields = props.tableFields.filter(item => item !== 'day')
-    this.data = props.filteredData.slice(0, 10)
+    this.data = props.filteredData.slice(0, DEFAULT_CHART_POST_AMOUNT)
     this.activeChart = props.activeChart || this.tableFields[0]
     this.changeActiveChart = props.changeActiveChart
   }
@@ -16,14 +18,11 @@ export default class Chart {
 
     const chartColumns = chartData.chartColumnsValues.map((item, indx, arr) => {
       const unit = 100 / arr.length;
-      const width = unit * 0.6
-      const margin = unit * 0.2
+      const width = unit * 0.6 // 1 - (0.2 * 2) = 0.6
+      const margin = unit * 0.2 // 1 - 0.6 = 0.4 => 0.4/2 = 0.2 side margins
 
 
-      return `
-      <div class="chartContent__column" style="height: ${item}% ; width: ${width}%; margin-right: ${margin}%; margin-left: ${margin}%;">
-      </div>
-    `
+      return new ChartColumn(item, width, margin).template
     }).join('')
 
 
