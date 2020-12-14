@@ -9,7 +9,7 @@ export default class Chart {
     this.tableFields = props.tableFields.filter(item => item !== 'day')
     this.data = props.filteredData.slice(0, DEFAULT_CHART_POST_AMOUNT)
     this.activeChart = props.activeChart || this.tableFields[0]
-    this.changeActiveChart = props.changeActiveChart
+    this.emit = props.emit
   }
   get template() {
     const chartData = getInfoForChart(this.data, this.activeChart)
@@ -65,7 +65,7 @@ export default class Chart {
   }
 
   _handleChartMetrikChange = (evt) => {
-    this.changeActiveChart(evt.target.value)
+    this.emit('_activeChart', evt.target.value)
   }
 
   _bind() {

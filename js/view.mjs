@@ -19,7 +19,7 @@ export default class View {
       this.chartView.init(isRerender)
       this.tableView.init(isRerender)
     } else {
-      this.filterView = new Filters(this.state.changeDateFrom, this.state.changeDateTo, this.state.dateFrom, this.state.dateTo)
+      this.filterView = new Filters(this.state)
       this.chartView = new Chart(this.state)
       this.tableView = new Table(this.state)
   

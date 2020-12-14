@@ -2,12 +2,11 @@ import throwDomEl from '../../utils/dom-emitter.mjs'
 import formatDate from '../../utils/formatDate.mjs'
 
 export default class Filters {
-  constructor(changeDateFrom, changeDateTo, dateFrom, dateTo) {
+  constructor(props) {
     this.blockId = 'filters';
-    this.changeDateFrom = changeDateFrom
-    this.changeDateTo = changeDateTo
-    this.dateFrom = dateFrom
-    this.dateTo = dateTo
+    this.dateFrom = props.dateFrom
+    this.dateTo = props.dateTo
+    this.changeDate = props.changeDate
   }
   get template() {
     return `
@@ -37,10 +36,10 @@ export default class Filters {
 
   _bind() {
     document.querySelector('#date-from').addEventListener('change', (evt) => {
-      this.changeDateFrom(evt.target.value)
+      this.changeDate('_dateFrom', evt.target.value)
     })
     document.querySelector('#date-to').addEventListener('change', (evt) => {
-      this.changeDateTo(evt.target.value)
+      this.changeDate('_dateTo', evt.target.value)
     })
   }
 }

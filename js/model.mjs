@@ -6,11 +6,8 @@ export default class State {
     this.data = []
     this.filteredData = []
     this.handleUpdate = handleUpdate
-    this.changeDateFrom = this.changeDateFrom.bind(this)
-    this.changeDateTo = this.changeDateTo.bind(this)
-    this.changeSortField = this.changeSortField.bind(this)
-    this.changeIsDesc = this.changeIsDesc.bind(this)
-    this.changeActiveChart = this.changeActiveChart.bind(this)
+    this.emit = this.emit.bind(this)
+    this.changeDate = this.changeDate.bind(this)
     this._sortField = null
     this._isDesc = true
     this._activeChart = ''
@@ -32,33 +29,13 @@ export default class State {
     return this._isDesc;
   }
 
-  changeActiveChart(value) {
-    this._activeChart = value
+  emit(key, newValue) {
+    this[key] = newValue
     this.handleUpdate()
   }
 
-  changeIsDesc(value) {
-    if (value) {
-      this._isDesc = true
-    } else {
-      this._isDesc = !this._isDesc
-    }
-
-    this.handleUpdate()
-  }
-
-  changeSortField(value) {
-    this._sortField = value
-    this.handleUpdate()
-  }
-
-  changeDateFrom(value) {
-    this._dateFrom = value
-    this._updateFilteredData()
-  }
-
-  changeDateTo(value) {
-    this._dateTo = value
+  changeDate(key, value) {
+    this[key] = value
     this._updateFilteredData()
   }
 
